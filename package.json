@@ -1,0 +1,27 @@
+{
+  "name": "cedrotechnodeapi",
+  "version": "1.0.0",
+  "description": "Teste Avaliatório CedroTech",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./bin/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PauloMussolini/CedroTechApiNode.git"
+  },
+  "author": "Paulo de Tarso F Mussolini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PauloMussolini/CedroTechApiNode/issues"
+  },
+  "homepage": "https://github.com/PauloMussolini/CedroTechApiNode#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

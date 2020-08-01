@@ -1,0 +1,125 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This API is a test for Cedro Technologies - Login using JWT",
+      "version": "1.0.0",
+      "title": "cedrotech.node.api",
+      "contact": {
+        "email": "paulo_mussolini@yahoo.com.br"
+      }
+    },
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+        "/": {
+          "get": {
+            "tags": [
+              "Version"
+            ],
+            "description": "get the API version",
+            "summary": "Get API Version",
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              }
+            }
+          }
+        },
+        "/login": {
+          "post": {
+            "tags": [
+              "Login"
+            ],
+            "summary": "Proceed Login",
+            "description": "Generate a Token JWT if is valid",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "Required params to Login",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/LoginPost"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              },
+              "500": {
+                "description": "error"
+              }
+            }
+          }
+        },
+        "/document": {
+            "post": {
+              "tags": [
+                "Document"
+              ],
+              "summary": "Generate document",
+              "description": "Generates text document with the information provided ",
+              "produces": [
+                "application/json"
+              ],
+              "parameters": [
+                {
+                  "in": "body",
+                  "name": "body",
+                  "description": "Required params to Login",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definitions/DocumentPost"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "success"
+                },
+                "500": {
+                  "description": "error"
+                }
+              }
+            }
+          }
+      },
+      "definitions": {
+        "LoginPost": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type":"string"
+            }
+          }
+        },
+        "DocumentPost": {
+            "type": "object",
+            "properties": {
+              "FullName": {
+                "type": "string"
+              },
+              "BornDate": {
+                "type":"string"
+              },
+              "CPF": {
+                "type":"string"
+              },
+              "RG": {
+                "type":"string"
+              }
+            }
+          }
+        }
+    }
