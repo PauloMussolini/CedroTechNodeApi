@@ -11,6 +11,13 @@
     "schemes": [
       "http"
     ],
+    "securityDefinitions": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
     "paths": {
         "/": {
           "get": {
@@ -24,7 +31,10 @@
             ],
             "responses": {
               "200": {
-                "description": "success"
+                "description": "success",
+                "schema": {
+                    "$ref": "#/definitions/ApiVersion"
+                  }
               }
             }
           }
@@ -52,20 +62,66 @@
             ],
             "responses": {
               "200": {
-                "description": "success"
+                "auth": true, 
+                "description": "User Logged!",
+                "schema": {
+                    "$ref": "#/definitions/Logged"
+                  }
+               
+              },
+              "401-1": {
+                "description": "Authorization information is missing or invalid (token)",
+                "schema": {
+                   "$ref": "#/definitions/LoginErrorNoToken"
+                 }      
+              },
+              "401-2": {
+                "description": "Authorization information is missing or invalid (email)",
+                "schema": {
+                   "$ref": "#/definitions/LoginErrorEmailRequired"
+                 }      
+              },
+              "401-3": {
+                "description": "Authorization information is missing or invalid (password)",
+                "schema": {
+                   "$ref": "#/definitions/LoginErrorPasswordRequired"
+                 }      
+              },
+              "401-4": {
+                "description": "Authorization information is missing or invalid (email invalid!)",
+                "schema": {
+                   "$ref": "#/definitions/LoginErrorEmailInvalid"
+                 }      
+              },
+              "401-5": {
+                "description": "Token session expired",
+                "schema": {
+                   "$ref": "#/definitions/LoginErrorTokenFinished"
+                 }      
+              },
+              "401-6": {
+                "description": "Authorization information is missing or invalid (invalid Token!)",
+                "schema": {
+                   "$ref": "#/definitions/LoginErrorInvalidToken"
+                 }      
               },
               "500": {
-                "description": "error"
+                "description": "Internal error"
               }
             }
           }
         },
         "/document": {
             "post": {
+              "security": [
+                {
+                  "Bearer": []
+                }
+              ],
               "tags": [
                 "Document"
               ],
-              "summary": "Generate document",
+               "summary": "Generate document",
               "description": "Generates text document with the information provided ",
               "produces": [
                 "application/json"
@@ -82,8 +138,47 @@
                 }
               ],
               "responses": {
+                "400": {
+                  "description": "Valdation information is missing or invalid (token)",
+                  "schema": {
+                     "$ref": "#/definitions/LoginErrorNoToken"
+                   }      
+                },
+                "400-1": {
+                  "description": "Document information is missing or invalid (FullName)",
+                  "schema": {
+                     "$ref": "#/definitions/DocumentMissingFullNameError"
+                   }      
+                },
+                "400-2": {
+                  "description": "Document information is missing or invalid (BornDate)",
+                  "schema": {
+                     "$ref": "#/definitions/DocumentMissingBornDateError"
+                   }      
+                },
+                "400-3": {
+                  "description": "Document information is missing or invalid (CPF)",
+                  "schema": {
+                     "$ref": "#/definitions/DocumentMissingCPFError"
+                   }      
+                },
+                "400-4": {
+                  "description": "Authorization information is missing or invalid (RG)",
+                  "schema": {
+                     "$ref": "#/definitions/DocumentMissingRGError"
+                   }      
+                },
+                "400-5": {
+                  "description": "Authorization information is missing or invalid (BornDate - yyyy-mm-dd)",
+                  "schema": {
+                     "$ref": "#/definitions/DocumentBornDateError"
+                   }      
+                },
                 "200": {
-                  "description": "success"
+                  "sucess": "true",
+                  "schema": {
+                    "$ref": "#/definitions/DocumentCreated"
+                  }
                 },
                 "500": {
                   "description": "error"
@@ -120,6 +215,283 @@
                 "type":"string"
               }
             }
+          },
+          "DocumentCreated":{
+            "type":"object",
+            "properties":{
+                "success": {
+                    "type": "boolean",
+                    "default": true      
+                  },
+                "nessage": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "default": "Document Created!",
+                      "enum": [
+                        "Document Created!"
+                      ]
+                    }
+                }
+            }
+          },
+        "Logged":{
+            "type":"object",
+            "properties":{
+                "token": {
+                    "type":"string"
+                }
+            }
+        },
+        "ApiVersion":{
+          "type":"object",
+          "properties":{
+              "title": {
+                  "type":"string"
+              },
+              "version": {
+                  "type":"string"
+              },
+              "description": {
+                  "type":"string"
+              }
+          }
+        },
+        "LoginErrorNoToken":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "No token provided.",
+                    "enum": [
+                      "No token provided."
+                    ]
+                  }
+              }
+          }
+        },
+        "LoginErrorEmailRequired":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Authorization information is missing or invalid (email is required)",
+                    "enum": [
+                      "Authorization information is missing or invalid (email is required)",
+                      "Authorization information is missing or invalid (password is required)",
+                      "Authorization information is missing or invalid (email invalid!)"
+                    ]
+                  }
+              }
+          }
+        },
+        "LoginErrorEmailInvalid":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Authorization information is missing or invalid (email invalid!)",
+                    "enum": [
+                      "Authorization information is missing or invalid (email is required)",
+                      "Authorization information is missing or invalid (password is required)",
+                      "Authorization information is missing or invalid (email invalid!)"
+                    ]
+                  }
+              }
+          }
+        },
+        "LoginErrorPasswordRequired":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Authorization information is missing or invalid (password is required)",
+                    "enum": [
+                      "Authorization information is missing or invalid (email is required)",
+                      "Authorization information is missing or invalid (password is required)",
+                      "Authorization information is missing or invalid (email invalid!)"
+                    ]
+                  }
+              }
+          }
+        },
+        "LoginErrorTokenFinished":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Token has finished!",
+                    "enum": [
+                      "Token has finished!"
+                    ]
+                  }
+              }
+          }
+        },
+        "LoginErrorInvalidToken":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Invalid Token!",
+                    "enum": [
+                      "Failed to authenticate token."
+                    ]
+                  }
+              }
+          }
+        },
+        "DocumentMissingFullNameError":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Document information is missing or invalid (FullName is required)",
+                    "enum": [
+                      "Document information is missing or invalid (FullName is required)",
+                      "Document information is missing or invalid (BornDate is required)",
+                      "Document information is missing or invalid (CPF is required)",
+                      "Document information is missing or invalid (RG is required)",
+                      "Document information is missing or invalid (BornDate invalid!)"
+                    ]
+                  }
+              }
+          }
+        },
+        "DocumentMissingBornDateError":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Document information is missing or invalid (BornDate is required)",
+                    "enum": [
+                      "Document information is missing or invalid (FullName is required)",
+                      "Document information is missing or invalid (BornDate is required)",
+                      "Document information is missing or invalid (CPF is required)",
+                      "Document information is missing or invalid (RG is required)",
+                      "Document information is missing or invalid (BornDate invalid!)"
+                    ]
+                  }
+              }
+          }
+        },
+        "DocumentMissingCPFError":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Document information is missing or invalid (CPF is required)",
+                    "enum": [
+                      "Document information is missing or invalid (FullName is required)",
+                      "Document information is missing or invalid (BornDate is required)",
+                      "Document information is missing or invalid (CPF is required)",
+                      "Document information is missing or invalid (RG is required)",
+                      "Document information is missing or invalid (BornDate invalid!)"
+                    ]
+                  }
+              }
+          }
+        },
+        "DocumentMissingRGError":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Document information is missing or invalid (RG is required)",
+                    "enum": [
+                      "Document information is missing or invalid (FullName is required)",
+                      "Document information is missing or invalid (BornDate is required)",
+                      "Document information is missing or invalid (CPF is required)",
+                      "Document information is missing or invalid (RG is required)",
+                      "Document information is missing or invalid (BornDate invalid!)"
+                    ]
+                  }
+              }
+          }
+        },
+        "DocumentBornDateError":{
+          "type":"object",
+          "properties":{
+              "success": {
+                  "type": "boolean",
+                  "default": false      
+                },
+              "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "Document information is missing or invalid (BornDate invalid)",
+                    "enum": [
+                      "Document information is missing or invalid (FullName is required)",
+                      "Document information is missing or invalid (BornDate is required)",
+                      "Document information is missing or invalid (CPF is required)",
+                      "Document information is missing or invalid (RG is required)",
+                      "Document information is missing or invalid (BornDate invalid!)"
+                    ]
+                  }
+              }
           }
         }
+      }
+        
     }
