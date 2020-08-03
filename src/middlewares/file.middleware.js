@@ -4,7 +4,6 @@ function createFile(req, res, next){
 
   
 let ip_details = req.socket.address();
-console.log(ip_details);
 
     let userData = `Nome Completo: ${req.body.FullName} \n`+
                    `Data de Nascimento: ${req.body.BornDate} \n`+
@@ -14,7 +13,7 @@ console.log(ip_details);
                    `Login: ${req.email} \n` +
                    `IP: ${ip_details.address}`
     
-    fs.writeFile('./data/log.txt', userData, function (err) {
+    fs.writeFile(`./data/${req.body.FullName}.txt`, userData, function (err) {
         if (err) throw err;
       });  
       next();

@@ -14,7 +14,6 @@ function validToken(req, res, next){
     else
       token = req.get('Authorization');
 
-console.log(token);
 // console.log(req.headers['authorization']);
 
     // if (!token){

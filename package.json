@@ -4,7 +4,8 @@
   "description": "Teste Avaliatório CedroTech",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/server.js"
+    "start": "nodemon ./bin/server.js",
+    "test": "mocha src/tests/login.test.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,10 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2"
   }
 }

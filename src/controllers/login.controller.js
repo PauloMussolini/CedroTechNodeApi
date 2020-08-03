@@ -10,7 +10,7 @@ exports.post = async (req, res, next) => {
 
         const resultValidation = returnLoginValidations(req);
         if (!resultValidation.isValid) {
-            res.status(400).send({
+            return res.status(400).send({
                 success: false,
                 errors: resultValidation.errors
             });
@@ -20,7 +20,7 @@ exports.post = async (req, res, next) => {
 
         // Valida usuário
         if (email !== "paulo_mussolini@yahoo.com.br" || password !== "Secret"){
-            res.status(401).send({
+            return res.status(401).send({
                 success: false,
                 description: "Unauthorized"
             });
@@ -30,14 +30,14 @@ exports.post = async (req, res, next) => {
             expiresIn: 600 // 10 mins
           });
 
-        res.status(200).send({
+        return res.status(200).send({
             auth: true,
             success: true,
             message: 'User Logged!',
             token: token
         });
     } catch {
-        res.status(500).send({
+        return res.status(500).send({
             auth: false,
             success: false,
             message: 'Internal error'

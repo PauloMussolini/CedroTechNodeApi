@@ -11,12 +11,12 @@ exports.post = async (req, res, next) => {
                 errors: resultValidation.errors
             });
         }
-        res.status(200).send({
+        return res.status(201).send({
             success: true,
             message: ['Document Created!']
         });    
     } catch{
-        res.status(500).send({
+        return res.status(500).send({
             auth: false,
             success: false,
             message: 'Internal error'

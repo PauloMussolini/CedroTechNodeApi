@@ -1,7 +1,7 @@
 const Validation = require('./fluent.validator');
 
 function DocumentValidations(req) {
-console.log('validando...')
+
     let ValidationDocument = new Validation();
 
     const { FullName, BornDate,  CPF, RG } = req.body; 
