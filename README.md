@@ -12,6 +12,7 @@ Desafio do BTG Pactual Digital
 - http: "0.0.1-security",
 - jsonwebtoken: "^8.5.1",
 - swagger-ui-express: "^4.1.4"
+- Docker
 
 ### Testes
 - chai: "^4.2.0",
@@ -66,5 +67,17 @@ cd / CedroTechNodeApi
 ### Testes
 - npm test
 
+## Instruções Docker
+### Criar imagem a partir do Dockerfile
+-Na pasta do projeto:
+docker build -t <namespace>/<image name>:<version> .
+
+### Executar local
+
+docker run -d --name <nome do container> -p 3000:3000 <namespace>/<image name>:<version>
+
+Abrir o navegador
+http://localhost:3000/swagger
+ou Postman
 
 Paulo de Tarso F Mussolini
