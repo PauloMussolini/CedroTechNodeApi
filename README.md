@@ -45,26 +45,26 @@ Fornecer as seguintes credenciais:
 ## Instruções
 ### Clonar o repositório
 
-git clone https://github.com/PauloMussolini/CedroTechNodeApi.git
+- git clone https://github.com/PauloMussolini/CedroTechNodeApi.git
 
 ### Atualizar dependências
 
 cd / CedroTechNodeApi
-npm install
+- npm install
 
 ### Executar
-npm start
+- npm start
 
 ### Acesso via Browser /  swagger
-http://localhost:3000/swagger
+- http://localhost:3000/swagger
 
 ### Acesso via Postman
-http://localhost:3000/
-http://localhost:3000/login
-http://localhost:3000/document
+- http://localhost:3000/
+- http://localhost:3000/login
+- http://localhost:3000/document
 
 ### Testes
-npm test
+- npm test
 
 
 Paulo de Tarso F Mussolini
