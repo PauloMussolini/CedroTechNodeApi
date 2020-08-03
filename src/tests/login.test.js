@@ -99,9 +99,8 @@ describe("3 - Document", () => {
                     response.body.should.be.a('object');
                     response.body.should.have.property('sucess').eq(false);
                     response.body.should.have.property('errors').to.have.members(['No token provided.']);
-                    done();
                 });
-
+            done();
         });  
         it("3.2 - It should NOT GENERATE document without all valid information but logged", (done) => {
             const login = {
@@ -279,6 +278,26 @@ describe("3 - Document", () => {
                     });
                     done();
                 });
+        });  
+        it("3.9 - It should NOT GENERATE document (token expired)", (done) => {
+            const documentInformation = {
+                "FullName": "Paulo de Tarso F Mussolini",
+                "BornDate": "07/02/1964",
+                "CPF": "123456",
+                "RG": "987654"
+            };
+                    chai.request(app)
+                    .post('/document')
+                    .set('authorization', 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdWxvX211c3NvbGluaUB5YWhvby5jb20uYnIiLCJpYXQiOjE1OTY0MTQ2MjQsImV4cCI6MTU5NjQxNTIyNH0.2RjRZgF73t4euTa7pMMw-X43VoANakQItClDOYrJxps")
+                    .send(documentInformation)
+                    .end((err, response) => {
+                        response.should.have.status(401);
+                        response.body.should.be.a('object');
+                        response.body.should.have.property('sucess').eq(false);
+                        response.body.should.have.property('errors').to.have.members(['Token has finished!']);
+    
+                    });
+                    done();
         });  
     })
 });
