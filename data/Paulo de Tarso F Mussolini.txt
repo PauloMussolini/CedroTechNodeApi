@@ -1,0 +1,8 @@
+Nome Completo: Paulo de Tarso F Mussolini 
+Data de Nascimento: 07/02/1964 
+CPF: 123456 
+RG: 987654 
+
+Usuario Autenticado 
+Login: paulo_mussolini@yahoo.com.br 
+IP: ::ffff:127.0.0.1
