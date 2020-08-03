@@ -28,7 +28,7 @@ exports.post = async (req, res, next) => {
 
         var token = jwt.sign({ email }, process.env.SECRET, {
             expiresIn: 600 // 10 mins
-          });
+        });
 
         return res.status(200).send({
             auth: true,

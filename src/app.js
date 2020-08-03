@@ -7,7 +7,6 @@ const swaggerDoc = require('./swagger-doc.json');
 var cors = require('cors');
 var cookieParser = require('cookie-parser'); 
 const validToken = require('./middlewares/token.middleware');
-const createFile = require('./middlewares/file.middleware');
 const app = express();
 
 const versionRoute = require('./routes/version.route');
@@ -32,9 +31,6 @@ app.use((req, res, next) => {
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/', versionRoute);
 app.use('/login', loginRoute);
-app.use('/document', validToken, createFile, documentRoute);
-// app.use('/policy-report', policyReportRoute);
-// app.use('/role', roleRoute);
-// app.use('/lifecycle', lifecycleRoute);
+app.use('/document', validToken, documentRoute);
 
 module.exports = app;
