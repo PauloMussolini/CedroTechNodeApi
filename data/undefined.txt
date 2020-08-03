@@ -1,8 +1,0 @@
-Nome Completo: undefined 
-Data de Nascimento: undefined 
-CPF: undefined 
-RG: undefined 
-
-Usuario Autenticado 
-Login: paulo_mussolini@yahoo.com.br 
-IP: ::ffff:127.0.0.1

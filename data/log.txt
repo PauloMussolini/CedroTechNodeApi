@@ -1,8 +1,0 @@
-Nome Completo: aaaa 
-Data de Nascimento: 1964-02-07 
-CPF: aaaa 
-RG: aaa 
-
-Usuario Autenticado 
-Login: paulo_mussolini@yahoo.com.br 
-IP: ::ffff:127.0.0.1
