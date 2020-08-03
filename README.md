@@ -3,15 +3,26 @@ Teste avaliatório da Empresa CedroTech
 Desafio do BTG Pactual Digital 
 
 ## Tecnologias utilizadas
+- Nodejs
+- body-parser: "^1.19.0",
+- cookie-parser: "^1.4.5",
+- cors: "^2.8.5",
+- dotenv-safe: "^8.2.0",
+- express: "^4.17.1",
+- http: "0.0.1-security",
+- jsonwebtoken: "^8.5.1",
+- swagger-ui-express: "^4.1.4"
 
-- Dot Net Core 3.1
-- XUnit 
+### Testes
+- chai: "^4.2.0",
+- chai-http: "^4.3.0",
+- mocha: "^8.1.0",
 
 ## Métodos
-### api/version
+### /
 - Exibe a versão da api
 
-### api/login
+### /login
 - Login do usuário
 Fornecer as seguintes credenciais:
 {
@@ -20,7 +31,7 @@ Fornecer as seguintes credenciais:
 }
 - Retorno: Token  
 
-### api/document/create
+### /document
 - Gera documento texto com as informações na pasta output
 - Fornecer Token (Bearer Token) e as seguintes informações:
 {
@@ -31,6 +42,29 @@ Fornecer as seguintes credenciais:
     "BornDate": "1964-02-07"
 }
 
+## Instruções
+### Clonar o repositório
+
+- git clone https://github.com/PauloMussolini/CedroTechNodeApi.git
+
+### Atualizar dependências
+
+cd / CedroTechNodeApi
+- npm install
+
+### Executar
+- npm start
+
+### Acesso via Browser /  swagger
+- http://localhost:3000/swagger
+
+### Acesso via Postman
+- http://localhost:3000/
+- http://localhost:3000/login
+- http://localhost:3000/document
+
+### Testes
+- npm test
 
 
 Paulo de Tarso F Mussolini
