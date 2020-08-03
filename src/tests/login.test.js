@@ -1,11 +1,8 @@
-//const Login = require('src/controllers/login.controller');
 let chai = require('chai');
 let chaiHttp = require("chai-http");
- let app = require('../app');
-// const { response } = require('../app');
+let app = require('../app');
 
 chai.should();
-
 chai.use(chaiHttp);
 
 describe("1 - Version", () => {

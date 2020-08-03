@@ -18,7 +18,7 @@ exports.post = async (req, res, next) => {
 
         const { email, password } = req.body;
 
-        // Valida usuário
+        // Valida usuário (Em memória, conforme permitido)
         if (email !== "paulo_mussolini@yahoo.com.br" || password !== "Secret"){
             return res.status(401).send({
                 success: false,
