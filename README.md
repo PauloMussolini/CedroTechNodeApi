@@ -70,11 +70,11 @@ cd / CedroTechNodeApi
 ## Instruções Docker
 ### Criar imagem a partir do Dockerfile
 -Na pasta do projeto:
-docker build -t <namespace>/<image name>:<version> .
+docker build -t namespace/imageName:version .
 
 ### Executar local
 
-docker run -d --name <nome do container> -p 3000:3000 <namespace>/<image name>:<version>
+docker run -d --name ContainerName -p 3000:3000 namespace/imageName:version
 
 Abrir o navegador
 http://localhost:3000/swagger
