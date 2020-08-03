@@ -80,4 +80,8 @@ Abrir o navegador
 http://localhost:3000/swagger
 ou Postman
 
+## Imagem no Docker Hub
+
+### paulomussolini/cedrotech:v1
+
 Paulo de Tarso F Mussolini
