@@ -70,39 +70,21 @@
                
               },
               "401-1": {
-                "description": "Authorization information is missing or invalid (token)",
-                "schema": {
-                   "$ref": "#/definitions/LoginErrorNoToken"
-                 }      
-              },
-              "401-2": {
                 "description": "Authorization information is missing or invalid (email)",
                 "schema": {
                    "$ref": "#/definitions/LoginErrorEmailRequired"
                  }      
               },
-              "401-3": {
+              "401-2": {
                 "description": "Authorization information is missing or invalid (password)",
                 "schema": {
                    "$ref": "#/definitions/LoginErrorPasswordRequired"
                  }      
               },
-              "401-4": {
+              "401-3": {
                 "description": "Authorization information is missing or invalid (email invalid!)",
                 "schema": {
                    "$ref": "#/definitions/LoginErrorEmailInvalid"
-                 }      
-              },
-              "401-5": {
-                "description": "Token session expired",
-                "schema": {
-                   "$ref": "#/definitions/LoginErrorTokenFinished"
-                 }      
-              },
-              "401-6": {
-                "description": "Authorization information is missing or invalid (invalid Token!)",
-                "schema": {
-                   "$ref": "#/definitions/LoginErrorInvalidToken"
                  }      
               },
               "500": {
@@ -172,6 +154,24 @@
                   "description": "Authorization information is missing or invalid (BornDate - yyyy-mm-dd)",
                   "schema": {
                      "$ref": "#/definitions/DocumentBornDateError"
+                   }      
+                },
+                "401-1": {
+                  "description": "Authorization information is missing or invalid (token)",
+                  "schema": {
+                     "$ref": "#/definitions/LoginErrorNoToken"
+                   }      
+                },
+                "401-2": {
+                  "description": "Token session expired",
+                  "schema": {
+                     "$ref": "#/definitions/LoginErrorTokenFinished"
+                   }      
+                },
+                "401-3": {
+                  "description": "Authorization information is missing or invalid (invalid Token!)",
+                  "schema": {
+                     "$ref": "#/definitions/LoginErrorInvalidToken"
                    }      
                 },
                 "200": {
